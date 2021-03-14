@@ -5,7 +5,7 @@ help
 # Before arch-chroot
 # fdisk partition, mkfs.ext4 and mount at /mnt
 timedatectl set-ntp true
-pacstrap /mnt base linux linux-firmware wpa_supplicant vim tmux iproute2 dhcpcd grub efibootmgr xorg kde-applications plasma tlp xclip os-prober git sudo xorg-xinit xterm zsh
+pacstrap /mnt base linux linux-firmware wpa_supplicant vim tmux iproute2 dhcpcd grub efibootmgr xorg kde-applications plasma tlp xclip os-prober git sudo xorg-xinit xterm zsh fzf
 arch-chroot /mnt
 
 # After arch-chroot, mount efi partition at /esp
