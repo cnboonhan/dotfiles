@@ -1,0 +1,29 @@
+# Enable networking
+iwctl 
+help
+
+# Before arch-chroot
+# fdisk partition, mkfs.ext4 and mount at /mnt
+timedatectl set-ntp true
+pacstrap /mnt base linux linux-firmware wpa_supplicant vim tmux iproute2 dhcpcd grub efibootmgr xorg kde-applications plasma tlp xclip os-prober git sudo xorg-xinit xterm
+arch-chroot /mnt
+
+# After arch-chroot, mount efi partition at /esp
+grub-install --target=x86_64-efi --efi-directory=/esp --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
+ln -sf /usr/share/zoneinfo/Asia/Singapore /etc/localtime
+
+# Edit /etc/locale.gen
+locale-gen
+
+# Edit /etc/hostname
+# Edit /etc/hosts
+# Set passwd
+# Edit /etc/sudoers to give wheel group sudo rights
+
+# Create user
+useradd -m -G wheel -s /bin/bash arch
+passwd arch
+
+# open GUI
+startx /usr/bin/startplasma-x11
