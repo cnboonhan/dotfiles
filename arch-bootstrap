@@ -5,7 +5,7 @@ help
 # Before arch-chroot
 # fdisk partition, mkfs.ext4 and mount at /mnt
 timedatectl set-ntp true
-pacstrap /mnt base linux linux-firmware wpa_supplicant gvim tmux iproute2 dhcpcd grub efibootmgr xorg kde-applications plasma tlp xclip os-prober git sudo xorg-xinit xterm zsh fzf ripgrep
+pacstrap /mnt base linux linux-firmware wpa_supplicant gvim tmux iproute2 dhcpcd grub efibootmgr xorg kde-applications plasma tlp xclip os-prober git sudo xorg-xinit xterm zsh fzf ripgrep gcc make cmake flake8 python-pip ctags
 arch-chroot /mnt
 
 # After arch-chroot, mount efi partition at /esp
@@ -28,9 +28,10 @@ passwd arch
 # Set up oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# Set up neovim
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+# Set up vim
+curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+sudo -H pip3 install pynvim
 
 # Set up tmux
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
