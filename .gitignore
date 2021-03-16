@@ -3,3 +3,4 @@ privatekey
 publickey
 coredns
 templates
+wg0.conf
