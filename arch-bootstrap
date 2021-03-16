@@ -40,5 +40,10 @@ sudo -H pip3 install pynvim
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 curl https://raw.githubusercontent.com/imomaliev/tmux-bash-completion/master/completions/tmux | sudo tee -a /usr/share/bash-completion/completions/tmux
 
+# Install yay for AUR management
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
 # open GUI
 startx /usr/bin/startplasma-x11
