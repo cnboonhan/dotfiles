@@ -1,32 +1,22 @@
-# Enable networking
-iwctl 
-help
+#!/bin/bash
+# Set your desired username here
+USERNAME=arch
 
-# Before arch-chroot
-# fdisk partition, mkfs.ext4 and mount at /mnt
-timedatectl set-ntp true
-pacstrap /mnt base linux linux-firmware wpa_supplicant gvim tmux iproute2 dhcpcd grub efibootmgr xorg kde-applications plasma tlp xclip os-prober git sudo xorg-xinit xterm zsh fzf ripgrep gcc make cmake flake8 python-pip ctags autopep8 rustfmt clang base-devel docker docker-compose wireguard-tools
-arch-chroot /mnt
+# Will need to bootstrap from external device first: 
+# mount [target-partition] /mnt
+# mount [efi-partition] /mnt/esp
+# pacstrap /mnt base linux linux-firmware
+# arch-chroot /mnt
+pacman -S base linux linux-firmware wpa_supplicant gvim tmux iproute2 dhcpcd grub efibootmgr xorg kde-applications plasma tlp xclip os-prober git sudo xorg-xinit xterm zsh fzf ripgrep gcc make cmake flake8 python-pip ctags autopep8 rustfmt clang base-devel docker docker-compose wireguard-tools
 
-# After arch-chroot, mount efi partition at /esp
 grub-install --target=x86_64-efi --efi-directory=/esp --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 ln -sf /usr/share/zoneinfo/Asia/Singapore /etc/localtime
 
-# Edit /etc/locale.gen
-locale-gen
-
-# Edit /etc/hostname
-# Edit /etc/hosts
-# Set passwd
-# Edit /etc/sudoers to give wheel group sudo rights
-
 # Create user
-useradd -m -G wheel -s /bin/bash arch
-passwd arch
-# add to docker group
-groupadd docker
-usermod -aG docker arch
+useradd -m -G wheel -s /bin/bash $USERNAME
+passwd $USER
+su $USER
 
 # Set up oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -45,5 +35,12 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
+# Edit /etc/locale.gen, then run locale-gen
+# Edit /etc/hostname
+# Edit /etc/hosts
+# Set passwd
+# Edit /etc/sudoers to give wheel group sudo rights
+
+
 # open GUI
-startx /usr/bin/startplasma-x11
+# startx /usr/bin/startplasma-x11
