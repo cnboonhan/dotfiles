@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Set up vim
+curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+sudo -H pip3 install pynvim
+
+# Set up tmux
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+curl https://raw.githubusercontent.com/imomaliev/tmux-bash-completion/master/completions/tmux | sudo tee -a /usr/share/bash-completion/completions/tmux
+
+# Install yay for AUR management
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+
+# Set up oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Edit /etc/locale.gen, then run locale-gen
+# Edit /etc/hostname
+# Edit /etc/hosts
+# Set passwd
+# Edit /etc/sudoers to give wheel group sudo rights
+
+
+# open GUI
+# startx /usr/bin/startplasma-x11
