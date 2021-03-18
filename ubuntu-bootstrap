@@ -1,0 +1,68 @@
+#!/bin/bash
+
+sudo apt install cmake -y
+sudo apt install curl wget -y
+sudo apt install git -y
+sudo apt install inotify-tools -y
+sudo apt install picocom -y
+sudo apt install chrony -y 
+sudo apt install xclip -y
+sudo apt install python3 python3-pip -y 
+sudo apt install exuberant-ctags -y
+sudo apt install ipython3 -y
+sudo apt install openssh-server -y
+sudo apt install software-properties-common -y
+sudo apt install clang -y
+sudo apt install clang-9 -y
+sudo apt install libclang-7-dev -y
+sudo apt install libclang-8-dev -y
+sudo apt install libclang-9-dev -y
+sudo apt install libclang-dev -y
+sudo apt install llvm-9 llvm-9-dev -y
+sudo apt install build-essential -y
+sudo apt install pv -y
+sudo apt install python3-setuptools -y
+sudo apt install htop -y
+sudo apt install time -y
+sudo apt install lsof -y
+sudo apt install bd -y
+sudo apt install gdb gdb-multiarch -y
+sudo apt install chrony -y
+sudo apt install bear -y
+sudo apt install w3m -y
+sudo apt install ripgrep -y
+sudo apt install python3-venv -y
+sudo apt install xterm -y
+sudo apt install vim-gtk3 -y
+
+pip3 install wheel
+pip3 install gdbgui
+pip3 install jupyterlab
+pip3 install pdbpp
+
+[ -d "$HOME/.fzf" ] && yes | rm -r $HOME/.fzf 
+git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+yes | $HOME/.fzf/install
+
+[ -d "$HOME/ccls" ] && yes | rm -r $HOME/ccls
+git clone --depth=1 --recursive https://github.com/MaskRay/ccls $HOME/ccls
+cd $HOME/ccls
+cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/usr/bin
+cmake --build Release
+sudo cmake --build Release --target install
+cd $HOME 
+yes | rm -r $HOME/ccls
+
+sudo apt install default-jdk -y
+sudo apt install build-essential cmake python3-dev -y
+sudo apt install flake8 -y
+sudo apt install python3-pip -y
+sudo apt install clang-format -y
+pip3 install --upgrade autopep8
+pip3 install cmakelang
+pip3 install doq
+sudo -H pip3 install pynvim
+
+sudo apt install tmux -y
+[ -d "$HOME/.tmux" ] && yes | rm -r $HOME/.tmux
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
