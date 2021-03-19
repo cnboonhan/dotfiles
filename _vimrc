@@ -248,15 +248,15 @@ function! s:denite_my_settings() abort
   \ denite#do_map('do_action', 'split')
 endfunction
 
-# Move in filter mode
+" Move in filter mode
 autocmd FileType denite-filter call s:denite_filter_my_settings()
-	function! s:denite_filter_my_settings() abort
-	  inoremap <silent><buffer> <C-j> <Esc>
-	      \:call denite#move_to_parent()<CR>
-	      \:call cursor(line('.')+1,0)<CR>
-	      \:call denite#move_to_filter()<CR>A
-	  inoremap <silent><buffer> <C-k> <Esc>
-	      \:call denite#move_to_parent()<CR>
-	      \:call cursor(line('.')-1,0)<CR>
-	      \:call denite#move_to_filter()<CR>A
-	endfunction
+function! s:denite_filter_my_settings() abort
+  inoremap <silent><buffer> <C-j> <Esc>
+      \:call denite#move_to_parent()<CR>
+      \:call cursor(line('.')+1,0)<CR>
+      \:call denite#move_to_filter()<CR>A
+  inoremap <silent><buffer> <C-k> <Esc>
+      \:call denite#move_to_parent()<CR>
+      \:call cursor(line('.')-1,0)<CR>
+      \:call denite#move_to_filter()<CR>A
+endfunction
