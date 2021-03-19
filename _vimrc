@@ -203,10 +203,6 @@ vnoremap <leader>c :<C-u>Denite command_history<CR>
 "   <C-h>         - Open currently selected file in a horizontal split
 autocmd FileType denite-filter call s:denite_filter_my_settings()
 function! s:denite_filter_my_settings() abort
-  imap <silent><buffer> <C-o>
-  \ <Plug>(denite_filter_quit)
-  inoremap <silent><buffer><expr> <Esc>
-  \ denite#do_map('quit')
   nnoremap <silent><buffer><expr> <Esc>
   \ denite#do_map('quit')
   inoremap <silent><buffer><expr> <CR>
@@ -251,3 +247,16 @@ function! s:denite_my_settings() abort
   nnoremap <silent><buffer><expr> <C-h>
   \ denite#do_map('do_action', 'split')
 endfunction
+
+# Move in filter mode
+autocmd FileType denite-filter call s:denite_filter_my_settings()
+	function! s:denite_filter_my_settings() abort
+	  inoremap <silent><buffer> <C-j> <Esc>
+	      \:call denite#move_to_parent()<CR>
+	      \:call cursor(line('.')+1,0)<CR>
+	      \:call denite#move_to_filter()<CR>A
+	  inoremap <silent><buffer> <C-k> <Esc>
+	      \:call denite#move_to_parent()<CR>
+	      \:call cursor(line('.')-1,0)<CR>
+	      \:call denite#move_to_filter()<CR>A
+	endfunction
