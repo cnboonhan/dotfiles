@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+
+echo "Generates SSH Key for authentication."
+
+if [ $# -eq 0 ]; then
+  echo "Usage: tb-generate-ssh-key [your-email]"
+  exit 1
+fi
+
+ssh-keygen -t rsa -b 4096 -C $1
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+
+echo 'public key has been copied to system clipboard'
+xclip -sel clip <~/.ssh/id_rsa.pub
