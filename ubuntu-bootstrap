@@ -36,38 +36,17 @@ sudo apt install python3-venv -y
 sudo apt install xterm -y
 sudo apt install vim-gtk3 -y
 sudo apt install tmux -y
-
-pip3 install wheel
-pip3 install gdbgui
-pip3 install jupyterlab
-pip3 install pdbpp
-
-[ -d "$HOME/.fzf" ] && yes | rm -r $HOME/.fzf 
-git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
-yes | $HOME/.fzf/install
-
-[ -d "$HOME/ccls" ] && yes | rm -r $HOME/ccls
-git clone --depth=1 --recursive https://github.com/MaskRay/ccls $HOME/ccls
-cd $HOME/ccls
-cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/usr/bin
-cmake --build Release
-sudo cmake --build Release --target install
-cd $HOME 
-yes | rm -r $HOME/ccls
-
 sudo apt install default-jdk -y
 sudo apt install build-essential cmake python3-dev -y
 sudo apt install flake8 -y
 sudo apt install python3-pip -y
 sudo apt install clang-format -y
+
+pip3 install wheel
+pip3 install gdbgui
+pip3 install jupyterlab
+pip3 install pdbpp
 pip3 install --upgrade autopep8
 pip3 install cmakelang
 pip3 install doq
 sudo -H pip3 install pynvim
-
-[ -d "$HOME/.vim" ] && yes | rm -r $HOME/.vim
-curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-      
-[ -d "$HOME/.tmux" ] && yes | rm -r $HOME/.tmux
-git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
