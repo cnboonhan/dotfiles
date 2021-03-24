@@ -36,7 +36,7 @@ endfunction
 """ PLUGINS 
 call plug#begin()
 Plug 'scrooloose/nerdtree'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --rust-completer' } 
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --rust-completer --js-completer --ts-completer' } 
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ludovicchabant/vim-gutentags'
