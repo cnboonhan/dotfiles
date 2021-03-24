@@ -47,6 +47,8 @@ Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'morhetz/gruvbox'
 Plug 'w0rp/ale'
 Plug 'vim-scripts/a.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 call plug#end()
 
 " Get paths of current file in buffer
