@@ -262,3 +262,5 @@ function! s:denite_filter_my_settings() abort
       \:call cursor(line('.')-1,0)<CR>
       \:call denite#move_to_filter()<CR>A
 endfunction
+
+nnoremap <leader>l :set relativenumber! nu! nonu<CR>
