@@ -122,3 +122,5 @@ parse-git-branch() {
 }
 
 export PS1='\[\e[1m\e[34m\]\u@\h\[\e[0m\]:\[\e[1m\e[32m\]\w \[\e[91m\]$(parse-git-branch)\[\e[0m\]$ '
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
