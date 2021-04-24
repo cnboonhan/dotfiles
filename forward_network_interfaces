@@ -1,10 +1,11 @@
 #!/bin/bash
 set -e
+
 forward_network_interfaces() {
   echo "Forwards packets between two network interfaces, making this device act like a router."
 
   if [ "$1" != 'reset' ] && [ "$1" != 'enable' ]; then
-    echo "Usage: forward_network_interfaces [reset|enable] [iface-1] [iface-2]"
+    echo "Usage: tb-conf-interface-forwarding [reset|enable] [iface-1] [iface-2]"
     return
   fi
 
@@ -15,30 +16,25 @@ forward_network_interfaces() {
 
   if [ $1 == 'enable' ]; then
     echo "Forwarding packets between $2 and $3"
-    sudo sed -i s/\#*net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/ /etc/sysctl.conf
     sudo sysctl -w net.ipv4.ip_forward=1
-    sudo iptables -A FORWARD -i $2 -o $3 -j ACCEPT
-    sudo iptables -A FORWARD -i $3 -o $2 -j ACCEPT
-    sudo iptables -t nat -A POSTROUTING -o $2 -j MASQUERADE
-    sudo iptables -t nat -A POSTROUTING -o $3 -j MASQUERADE
+    sudo iptables-save > $HOME/.iptables-backup
+
+    sudo iptables -I FORWARD -i $2 -o $3 -j ACCEPT
+    sudo iptables -I FORWARD -i $3 -o $2 -j ACCEPT
+    sudo iptables -t nat -I POSTROUTING -o $2 -j MASQUERADE
+    sudo iptables -t nat -I POSTROUTING -o $3 -j MASQUERADE
 
   elif [ $1 == 'reset' ]; then
-    echo "Reset routing tables to defaults."
-    sudo sed -i s/\#*net.ipv4.ip_forward=1/\#net.ipv4.ip_forward=1/ /etc/sysctl.conf
-    sudo sysctl -w net.ipv4.ip_forward=0
+    echo "Reset routing tables to backed up values."
+    sudo sysctl -p /etc/sysctl.conf
 
-    sudo iptables -P INPUT ACCEPT
-    sudo iptables -P OUTPUT ACCEPT
-    sudo iptables -P FORWARD ACCEPT
-    sudo iptables -F
+    sudo iptables-restore $HOME/.iptables-backup
   fi
 
-  sudo sysctl -p
-
   echo "Current iptable Configuration"
+  sudo sysctl net.ipv4.ip_forward
   sudo iptables -S
-  echo "Saving iptable configuration"
-  sudo netfilter-persistent save
+  sudo iptables -S -t nat
 }
 
 export -f forward_network_interfaces
