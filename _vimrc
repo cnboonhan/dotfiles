@@ -264,3 +264,11 @@ function! s:denite_filter_my_settings() abort
 endfunction
 
 nnoremap <leader>l :set relativenumber! nu! nonu<CR>
+
+" Use persistent history.
+if !isdirectory("/tmp/.vim-undo-dir")
+    call mkdir("/tmp/.vim-undo-dir", "", 0700)
+endif
+set undodir=/tmp/.vim-undo-dir
+set undofile
+
