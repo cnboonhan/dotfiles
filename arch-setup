@@ -15,7 +15,7 @@ cd yay
 makepkg -si
 
 # Set up oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+#sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Edit /etc/locale.gen, then run locale-gen
 # Edit /etc/hostname
