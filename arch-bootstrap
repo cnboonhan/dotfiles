@@ -7,7 +7,7 @@ USERNAME=arch
 # mount [efi-partition] /mnt/esp
 # pacstrap /mnt base linux linux-firmware
 # arch-chroot /mnt
-pacman -S base linux linux-firmware wpa_supplicant gvim tmux iproute2 dhcpcd grub efibootmgr xorg kde-applications plasma tlp xclip os-prober git sudo xorg-xinit xterm fzf ripgrep gcc make cmake base-devel bluez bluez-utils
+pacman -S base linux linux-firmware wpa_supplicant gvim tmux iproute2 dhcpcd grub efibootmgr xorg kde-applications plasma tlp xclip ctags os-prober git sudo xorg-xinit xterm fzf ripgrep gcc make cmake base-devel bluez bluez-utils
 
 grub-install --target=x86_64-efi --efi-directory=/esp --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
