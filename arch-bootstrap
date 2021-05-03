@@ -17,3 +17,5 @@ ln -sf /usr/share/zoneinfo/Asia/Singapore /etc/localtime
 # Create user
 useradd -m -G wheel -s /bin/bash $USERNAME
 passwd $USER
+
+# Set Display manager X11 instead of Wayland
