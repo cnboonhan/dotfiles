@@ -13,8 +13,8 @@ Vagrant.configure("2") do |config|
   # your network.
   config.ssh.forward_x11 = true
   config.vm.network "public_network"
-  config.vm.define "rmf"
-  config.vm.hostname = "rmf"
+  config.vm.define "ros1Noetic"
+  config.vm.hostname = "ros1Noetic"
   config.vm.provider "virtualbox" do |v|
         v.memory = 8000         # Change this base on your host RAM avaiability
         v.cpus = 2
