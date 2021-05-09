@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
      wget https://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
      sudo apt update
      sudo apt install ros-foxy-desktop python3-argcomplete python3-rosdep -y 
-     sudo apt install git cmake python3-vcstool curl qt5-default ignition-edifice -y
+     sudo apt install git cmake python3-vcstool curl -y
      sudo apt-get install python3-colcon* -y
      sudo rosdep init
      rosdep update
