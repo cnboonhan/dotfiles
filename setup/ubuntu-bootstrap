@@ -51,3 +51,29 @@ pip3 install --upgrade autopep8
 pip3 install cmakelang
 pip3 install doq
 sudo -H pip3 install pynvim
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+source ~/.bashrc
+
+[ -d "$HOME/.fzf" ] && yes | rm -r $HOME/.fzf 
+git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+yes | $HOME/.fzf/install
+
+[ -d "$HOME/ccls" ] && yes | rm -r $HOME/ccls
+git clone --depth=1 --recursive https://github.com/MaskRay/ccls $HOME/ccls
+cd $HOME/ccls
+cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/usr/bin
+cmake --build Release
+sudo cmake --build Release --target install
+cd $HOME 
+yes | rm -r $HOME/ccls
+
+# Set up vim
+curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+sudo -H pip3 install pynvim
+
+# Set up tmux
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+curl https://raw.githubusercontent.com/imomaliev/tmux-bash-completion/master/completions/tmux | sudo tee -a /usr/share/bash-completion/completions/tmux
+
