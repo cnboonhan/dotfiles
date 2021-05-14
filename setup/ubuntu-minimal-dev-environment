@@ -35,6 +35,7 @@ sudo -H pip3 install pynvim
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 source ~/.bashrc
+nvm install --lts
 
 [ -d "$HOME/.fzf" ] && yes | rm -r $HOME/.fzf 
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
