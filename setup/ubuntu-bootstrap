@@ -43,6 +43,9 @@ sudo apt install python3-pip -y
 sudo apt install clang-format -y
 sudo apt install termshark -y
 
+sudo systemctl disable systemd-networkd-wait-online.service
+sudo systemctl mask systemd-networkd-wait-online.service
+
 pip3 install wheel
 pip3 install gdbgui
 pip3 install jupyterlab
