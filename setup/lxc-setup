@@ -3,22 +3,15 @@
 # https://discuss.linuxcontainers.org/t/gui-apps-in-lxd-container/4612/3
 # check that you have something like ubuntu:1000:65536 in /etc/sub[g|u]id
 
-mkdir -p ~/.config/lxc
-cp /etc/lxc/default.conf ~/.config/lxc/default.conf
-
-# echo "`whoami` veth lxdbr0 10" > /etc/lxc/lxc-usernet
-# In /etc/default/lxc-net, set USE_LXC_BRIDGE to false
-# Change lxcbr0 to lxdbr0
-echo "lxc.idmap = u 0 1000 65536" >> ~/.config/lxc/default.conf
-echo "lxc.idmap = g 0 1000 65536" >> ~/.config/lxc/default.conf
-
 sudo lxd init
 
 #Manual setup
 #lxc launch ubuntu:20.04 ubuntu
 #lxc config device add ubuntu workspaces disk path=/home/ubuntu/workspaces source="/home/ubuntu/workspaces"
 
-# Add this to lxc profile add ubuntu gui; lxc profile edit gui
+# Add this to lxc profile create guil lxc profile add ubuntu gui; lxc profile edit gui
+# Check that /tmp/.X11/unix/X0 exists ( echo $DISPLAY on host )
+# other wise modify X0 below
 :'
 config:
   environment.DISPLAY: :0
