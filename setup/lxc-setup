@@ -7,7 +7,7 @@ echo "`whoami` veth lxdbr0 10" > /etc/lxc/lxc-usernet
 mkdir -p ~/.config/lxc
 cp /etc/lxc/default.conf ~/.config/lxc/default.conf
 # Change lxcbr0 to lxdbr0
-# In /etc/default/lxc-netto, set USE_LXC_BRIDGE to false
+# In /etc/default/lxc-net, set USE_LXC_BRIDGE to false
 echo "lxc.idmap = u 0 1000 65536" >> ~/.config/lxc/default.conf
 echo "lxc.idmap = g 0 1000 65536" >> ~/.config/lxc/default.conf
 
