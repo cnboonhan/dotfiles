@@ -28,6 +28,9 @@ sudo apt install default-jdk -y
 sudo apt install build-essential cmake python3-dev -y
 sudo apt install flake8 -y
 
+sudo systemctl disable systemd-networkd-wait-online.service
+sudo systemctl mask systemd-networkd-wait-online.service
+
 pip3 install autopep8
 pip3 install cmakelang
 pip3 install doq
