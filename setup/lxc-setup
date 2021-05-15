@@ -34,3 +34,5 @@ devices:
 name: gui
 used_by: []
 '
+
+# Make sure in /etc/avahi/avahi-daemon.conf, cache-entries-max=4096
