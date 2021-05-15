@@ -3,11 +3,12 @@
 # https://discuss.linuxcontainers.org/t/gui-apps-in-lxd-container/4612/3
 # check that you have something like ubuntu:1000:65536 in /etc/sub[g|u]id
 
-echo "`whoami` veth lxdbr0 10" > /etc/lxc/lxc-usernet
 mkdir -p ~/.config/lxc
 cp /etc/lxc/default.conf ~/.config/lxc/default.conf
-# Change lxcbr0 to lxdbr0
+
+# echo "`whoami` veth lxdbr0 10" > /etc/lxc/lxc-usernet
 # In /etc/default/lxc-net, set USE_LXC_BRIDGE to false
+# Change lxcbr0 to lxdbr0
 echo "lxc.idmap = u 0 1000 65536" >> ~/.config/lxc/default.conf
 echo "lxc.idmap = g 0 1000 65536" >> ~/.config/lxc/default.conf
 
