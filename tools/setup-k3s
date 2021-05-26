@@ -1,2 +1,4 @@
 curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --no-deploy traefik --docker --write-kubeconfig-mode 644" sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml
+
+kubectl get all --namespace=ingress-nginx
