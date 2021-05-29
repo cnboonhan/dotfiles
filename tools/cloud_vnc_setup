@@ -1,4 +1,0 @@
-#!/bin/bash
-
-sudo apt-get install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal 
-sudo apt install sudo apt install tigervnc-standalone-server 
