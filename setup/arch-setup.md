@@ -33,7 +33,7 @@ mount /dev/nvme0n1p2 /mnt
 iwctl       # station wlan0 connect [wifi]
 
 # Bootstrap Arch
-pacstrap /mnt base linux linux-firmware vim tmux wpa_supplicant sudo
+pacstrap /mnt base linux linux-firmware vim tmux wpa_supplicant sudo 
 
 # Generate mount configuration at boot
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -61,7 +61,6 @@ passwd arch
 
 # Restart and remove USB
 ```
-
 ## Network Setup
 ```
 # Set up network as root
@@ -82,7 +81,6 @@ systemctl start systemd-resolved
 # ping check
 # Run enable on all systemctl if successful
 ```
-
 # AUR Setup
 ```
 pacman -S git base-devel
@@ -90,11 +88,10 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 ```
-
-
 ## GUI Setup
 ```
 pacman -S xorg xorg-xinit
+cd /usr/src
 git clone git://git.suckless.org/dwm
 git clone git://git.suckless.org/st
 git clone git://git.suckless.org/dmenu
@@ -104,3 +101,6 @@ cd dmenu && make clean install
 echo "exec dwm" >> ~/.xinitrc
 startx
 ```
+## Add Bash Completion
+sudo pacman -S bash-completion
+echo "source /usr/share/bash-completion/bash_completion" >> ~/.bashrc
