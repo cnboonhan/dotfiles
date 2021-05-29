@@ -33,7 +33,7 @@ mount /dev/nvme0n1p2 /mnt
 iwctl       # station wlan0 connect [wifi]
 
 # Bootstrap Arch
-pacstrap /mnt base linux linux-firmware vim tmux wpa_supplicant sudo 
+pacstrap /mnt base linux linux-firmware vim tmux wpa_supplicant sudo
 
 # Generate mount configuration at boot
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -104,3 +104,7 @@ startx
 ## Add Bash Completion
 sudo pacman -S bash-completion
 echo "source /usr/share/bash-completion/bash_completion" >> ~/.bashrc
+
+## Setup up SSH keys
+sudo pacman -S openssh
+ssh-keygen -b 4096
