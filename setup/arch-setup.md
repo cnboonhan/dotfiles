@@ -105,6 +105,9 @@ startx
 sudo pacman -S bash-completion
 echo "source /usr/share/bash-completion/bash_completion" >> ~/.bashrc
 
-## Setup up SSH keys
-sudo pacman -S openssh
+## Setup up SSH keys and networking
+```
+pacman -S openssh avahi nss-mdns
+systemctl start avahi-daemon.service
 ssh-keygen -b 4096
+```

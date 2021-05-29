@@ -25,3 +25,15 @@ root:100000:65536
 GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet systemd.unified_cgroup_hierarchy=0"
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
+# Set default DNS for lxdbr0 network
+lxc network set lxdbr0 raw.dnsmasq dhcp-option=6,8.8.8.8,8.8.4.4
+
+# Add the following to /etc/systemd/network/lxdbr0.network to enable mDNS
+```
+[Match]
+Name=lxdbr0
+
+[Network]
+MulticastDNS=yes
+```
