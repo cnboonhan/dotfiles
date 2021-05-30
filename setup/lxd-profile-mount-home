@@ -1,0 +1,12 @@
+lxc profile create mount-home &> /dev/null || true
+cat << EOF | lxc profile edit mount-home 
+name: mount-home 
+description: Mount the home folder
+devices:
+  home:
+    path: /root
+    source: /home/$USER
+    type: disk
+name: mount-home
+used_by: []
+EOF

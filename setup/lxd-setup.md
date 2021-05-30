@@ -6,19 +6,20 @@ lxd init
 usermod -aG lxd arch
 ```
 
+# Change occurances of 1000 to 100000 for unprivileged containers
 # Add the following to /etc/pam.d/system.login
 ```
 session    optional   pam_cgfs.so -c freezer,memory,name=systemd,unified
 ```
 
-# Add the following to /etc/lxc/defaul.tconf
-```
-lxc.idmap = u 0 100000 65536
-lxc.idmap = g 0 100000 65536
+# Add the following to /etc/lxc/default.tconf
+```     
+lxc.idmap = u 0 1000 65536
+lxc.idmap = g 0 1000 65536
 ```
 
 # Add the following to /etc/subuid and /etc/subgid
-root:100000:65536
+root:1000:65536
 
 # Modify GRUB_CMDLINE_LINUX_DEFAULT as following
 ```
