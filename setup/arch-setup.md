@@ -33,7 +33,7 @@ mount /dev/nvme0n1p2 /mnt
 iwctl       # station wlan0 connect [wifi]
 
 # Bootstrap Arch
-pacstrap /mnt base linux linux-firmware vim tmux wpa_supplicant sudo
+pacstrap /mnt base linux linux-firmware vim tmux wpa_supplicant sudo alsamixer
 
 # Generate mount configuration at boot
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -101,6 +101,15 @@ cd dmenu && make clean install
 echo "exec dwm" >> ~/.xinitrc
 startx
 ```
+
+# Setup Ubuntu fonts
+```
+pacman -S ttf-ubuntu-font-family
+fc-list | grep ubuntu			# To get font name
+# Change config.h fonts variable in st with line to have this: 
+# static const char *fonts[]          = { "Ubuntu Mono:size=14:antialias=true:autohint=true" };
+```
+
 ## Add Bash Completion
 sudo pacman -S bash-completion
 echo "source /usr/share/bash-completion/bash_completion" >> ~/.bashrc

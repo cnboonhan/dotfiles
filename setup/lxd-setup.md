@@ -42,3 +42,4 @@ MulticastDNS=yes
 ssh-keygen -f $HOME/.ssh/id_rsa_lxd
 lxc exec [container-name] -- su --login ubuntu bash -c "echo $(cat $HOME/.ssh/id_rsa_lxd.pub) >> /home/ubuntu/.ssh/authorized_keys" 
 ```
+
