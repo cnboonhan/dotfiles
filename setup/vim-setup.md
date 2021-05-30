@@ -3,7 +3,7 @@ Setup Vim with minimal configurations and plugins.
 
 ## Install vim
 ```
-sudo pacman -S vim ctags
+sudo pacman -S gvim ctags
 ```
 
 

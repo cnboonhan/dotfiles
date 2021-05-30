@@ -33,7 +33,7 @@ mount /dev/nvme0n1p2 /mnt
 iwctl       # station wlan0 connect [wifi]
 
 # Bootstrap Arch
-pacstrap /mnt base linux linux-firmware vim tmux wpa_supplicant sudo alsamixer
+pacstrap /mnt base linux linux-firmware tmux wpa_supplicant sudo alsamixer
 
 # Generate mount configuration at boot
 genfstab -U /mnt >> /mnt/etc/fstab
