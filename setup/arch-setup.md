@@ -128,3 +128,10 @@ xrandr --output [display-name] --auto     # Activate display
 xrandr --output [display-name] --off     # De-activate display
 xrandr --output [display-name] --left-of/right-of [other-display      # Relative positioning
 ```
+
+## Add sound
+```
+pacman -S alsamixer
+# Press F6 and select sound card
+# M to mute/unmute
+```
