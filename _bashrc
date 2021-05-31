@@ -1,0 +1,22 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+PS1='[\u@\h \W]\$ '
+
+source /usr/share/bash-completion/bash_completion
+
+## Helper function for PS1 modification to see git branch in terminal prompt
+parse-git-branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+get_battery() {
+cat /sys/class/power_supply/BAT1/capacity
+}
+
+export PS1='\[\e[1m\e[34m\]\u@\h\[ [$(get_battery)]\e[0m\]:\[\e[1m\e[32m\]\w \[\e[91m\]$(parse-git-branch)\[\e[0m\]$ '
