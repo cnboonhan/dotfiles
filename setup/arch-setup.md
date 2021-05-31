@@ -120,3 +120,11 @@ pacman -S openssh avahi nss-mdns
 systemctl start avahi-daemon.service
 ssh-keygen -b 4096
 ```
+
+## Set Monitor
+```
+xrandr # See what are the displays you have
+xrandr --output [display-name] --auto     # Activate display
+xrandr --output [display-name] --off     # De-activate display
+xrandr --output [display-name] --left-of/right-of [other-display      # Relative positioning
+```
