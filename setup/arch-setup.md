@@ -135,3 +135,8 @@ pacman -S alsamixer
 # Press F6 and select sound card
 # M to mute/unmute
 ```
+
+## Add misc
+```
+pacman -S scrot     # Screenshots with scrot, scrot -u
+```
