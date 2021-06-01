@@ -131,7 +131,7 @@ xrandr --output [display-name] --left-of/right-of [other-display      # Relative
 
 ## Add sound
 ```
-pacman -S alsamixer
+pacman -S alsamixer pavucontrol
 # Press F6 and select sound card
 # M to mute/unmute
 ```
