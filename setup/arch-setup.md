@@ -140,3 +140,9 @@ pacman -S alsamixer pavucontrol
 ```
 pacman -S scrot     # Screenshots with scrot, scrot -u
 ```
+
+## Recording Video
+```
+pacman -S vlc ffmpeg
+ffmpeg -framerate 25 -video_size 1920x1080 -f x11grab -i :0.0+0,0 output.mp4      # Records from :0 a 1920x1080 video at offsets 0,0
+```
