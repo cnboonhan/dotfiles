@@ -83,11 +83,27 @@ name: default
 EOF
 }
 
-lxc_setup() {
+lxc_create_profile_mounthome(){
+lxc profile create mounthome &> /dev/null || true
+cat << EOF | lxc profile edit mounthome 
+name: mounthome 
+description: Mount the home folder
+devices:
+  home:
+    path: /root
+    source: /home/$USER
+    type: disk
+name: mount-home
+used_by: []
+EOF
+}
+
+lxc_setup_all() {
   which lxc &> /dev/null || (echo "LXC not found, installing.." && apt install lxc -y)
   lxc_create_storage_pool || echo "Storage pool was not created"
   lxc_create_network_lxdbr0 || echo "Network lxcbr0 was not created"
   lxc_create_profile_display  || echo "Display profile was not created."
   lxc_create_profile_minikube  || echo "Minikube profile was not created."
   lxc_create_profile_default  || echo "default profile was not created."
+  lxc_create_profile_mounthome  || echo "mounthome profile was not created."
 }
