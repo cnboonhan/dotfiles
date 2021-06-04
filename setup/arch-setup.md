@@ -17,10 +17,10 @@ cp archlinux.iso  /dev/sda
 # Clear Partitions
 fdisk -l
 fdisk /dev/nvme0n1
-# Delete all partitions: d <CR> until empty;
-# Create new Partition for EFI: n <CR> <CR> +512 <CR> y <CR> t <CR> 1 <CR>
-# Create new Partition for root: <CR> <CR> <CR> y <CR> 
-# Write Partitions: w <CR>
+# Delete all partitions
+# Create new Partition for EFI
+# Create new Partition for root
+# Write Partitions
 
 # Format Partitions
 mkfs.fat /dev/nvme0n1p1
@@ -33,7 +33,7 @@ mount /dev/nvme0n1p2 /mnt
 iwctl       # station wlan0 connect [wifi]
 
 # Bootstrap Arch
-pacstrap /mnt base linux linux-firmware tmux wpa_supplicant sudo alsamixer
+pacstrap /mnt base linux linux-firmware tmux wpa_supplicant sudo dosfstools
 
 # Generate mount configuration at boot
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -131,7 +131,7 @@ xrandr --output [display-name] --left-of/right-of [other-display      # Relative
 
 ## Add sound
 ```
-pacman -S alsamixer pavucontrol
+pacman -S alsa-utils pulseaudio pavucontrol 
 # Press F6 and select sound card
 # M to mute/unmute
 ```
