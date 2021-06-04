@@ -106,8 +106,9 @@ startx
 ```
 pacman -S ttf-ubuntu-font-family
 fc-list | grep ubuntu			# To get font name
-# Change config.h fonts variable in st with line to have this: 
-# static const char *fonts[]          = { "Ubuntu Mono:size=11:antialias=true:autohint=true" };
+# Change config.h to have this: 
+# static const char *fonts[] = { "Ubuntu Mono:size=11:antialias=true:autohint=true" };        # in dwm
+# static char *font = {"Ubuntu Mono:size=14:antialias=true:autohint=true"};                   # in st
 ```
 
 ## Add Bash Completion
@@ -118,6 +119,7 @@ echo "source /usr/share/bash-completion/bash_completion" >> ~/.bashrc
 ```
 pacman -S openssh avahi nss-mdns
 systemctl start avahi-daemon.service
+systemctl start/enable sshd.service
 ssh-keygen -b 4096
 ```
 
