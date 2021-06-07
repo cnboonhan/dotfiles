@@ -21,4 +21,4 @@ cat /sys/class/power_supply/$(ls /sys/class/power_supply/ | grep BAT | head -1)/
 
 export PS1='\[\e[1m\e[34m\]\u@\h\[ [$(get_battery)]\e[0m\]:\[\e[1m\e[32m\]\w \[\e[91m\]$(parse-git-branch)\[\e[0m\]$ '
 
-source $HOME/.bashrc.fzf
+#source $HOME/.bashrc.fzf
