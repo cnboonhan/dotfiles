@@ -109,6 +109,7 @@ fc-list | grep ubuntu			# To get font name
 # Change config.h to have this: 
 # static const char *fonts[] = { "Ubuntu Mono:size=11:antialias=true:autohint=true" };        # in dwm
 # static char *font = {"Ubuntu Mono:size=14:antialias=true:autohint=true"};                   # in st
+# Rebuild!
 ```
 
 ## Add Bash Completion
@@ -129,6 +130,7 @@ xrandr # See what are the displays you have
 xrandr --output [display-name] --auto     # Activate display
 xrandr --output [display-name] --off     # De-activate display
 xrandr --output [display-name] --left-of/right-of [other-display      # Relative positioning
+xrandr -s [resolution]                  # change monitor resolution
 ```
 
 ## Add sound
