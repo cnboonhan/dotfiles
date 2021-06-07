@@ -95,21 +95,19 @@ cd /usr/src
 git clone git://git.suckless.org/dwm
 git clone git://git.suckless.org/st
 git clone git://git.suckless.org/dmenu
+
+# Setup Ubuntu fonts
+pacman -S ttf-ubuntu-font-family
+fc-list | grep ubuntu			# To get font name
+# Change config.def.h to have this: 
+# static const char *fonts[] = { "Ubuntu Mono:size=14:antialias=true:autohint=true" };        # in dwm
+# static char *font = {"Ubuntu Mono:size=14:antialias=true:autohint=true"};                   # in st
+
 cd dwm && make clean install
 cd st && make clean install
 cd dmenu && make clean install
 echo "exec dwm" >> ~/.xinitrc
 startx
-```
-
-# Setup Ubuntu fonts
-```
-pacman -S ttf-ubuntu-font-family
-fc-list | grep ubuntu			# To get font name
-# Change config.h to have this: 
-# static const char *fonts[] = { "Ubuntu Mono:size=11:antialias=true:autohint=true" };        # in dwm
-# static char *font = {"Ubuntu Mono:size=14:antialias=true:autohint=true"};                   # in st
-# Rebuild!
 ```
 
 ## Add Bash Completion
