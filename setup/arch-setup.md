@@ -134,6 +134,8 @@ xrandr -s [resolution]                  # change monitor resolution
 ## Add sound
 ```
 pacman -S alsa-utils pulseaudio pavucontrol 
+pulseaudio --check
+pulseaudio -D
 # Press F6 and select sound card
 # M to mute/unmute
 ```
