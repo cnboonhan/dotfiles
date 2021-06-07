@@ -45,13 +45,22 @@ fdr() {
 # using ripgrep combined with preview
 # find-in-file - usage: fif <searchTerm>
 fif() {
-  if [ ! "$#" -gt 0 ]; then echo "Need a string to search for!"; return 1; fi
+  if [ ! "$#" -gt 0 ]; then return 1; fi
   rg --files-with-matches --no-messages "$1" | fzf --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' || rg --ignore-case --pretty --context 10 '$1' {}"
 }
 
 fife() {
-  file=$(fif $1)
+  if [ -z $1 ]; then inp="."; else inp=$1; fi
+  file=$(fif $inp)
   [ -z $file ] || vim $file
+}
+
+fr() {
+  if [ -z $1 ]; then inp="."; else inp=$1; fi
+  info=$(rg $inp --vimgrep | fzf)
+  file=$(echo "$info" | cut -d':' -f1)
+  line=$(echo "$info" | cut -d':' -f2)
+  [ -z $file ] || vim $file +$line
 }
 
 # fh - repeat history
