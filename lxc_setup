@@ -107,3 +107,5 @@ lxc_setup_all() {
   lxc_create_profile_default  || echo "default profile was not created."
   lxc_create_profile_mounthome  || echo "mounthome profile was not created."
 }
+
+lxc_setup_all
