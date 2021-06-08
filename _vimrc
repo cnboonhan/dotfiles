@@ -1,5 +1,6 @@
 set nocompatible
-syntax enable
+colo elflord
+syntax on 
 filetype plugin on
 let mapleader=","
 
