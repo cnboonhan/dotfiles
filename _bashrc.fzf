@@ -19,6 +19,11 @@ fo() {
   fi
 }
 
+# flg - Grab selected lines in fzf and copy to clipboard
+flg() {   
+  [ -z $1 ] || tac $1 | grep ${2:-''} | fzf -m | xclip -i -sel clip
+}
+
 # fd - cd to selected directory
 fd() {
   local dir
