@@ -1,0 +1,15 @@
+call plug#begin('~/.vim/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'scrooloose/nerdcommenter'
+Plug 'w0rp/ale'
+call plug#end()
+
+" ALE
+let g:ale_linters = {'python': ['flake8'], 'c': ['null'], 'cpp': ['null']}
+let g:ale_fixers = {'python': ['autopep8'], 'c': ['clang-format'], 'cpp':['clang-format'], 'rust': ['rustfmt']}
+
+"let g:ale_fix_on_save = 1
+let g:ale_python_flake8_options = '--ignore=A003,D400,D205,D107,D102,E111,E114,E226,F841'
+
+nmap <leader>z :ALEToggle<CR>
+nmap <leader>Z :ALEFix<CR>
