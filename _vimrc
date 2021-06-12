@@ -12,7 +12,6 @@ set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent breakinde
 set incsearch ignorecase smartcase hlsearch 
 set relativenumber
 set clipboard=unnamedplus
-set shell=bash\ -i
 
 autocmd VimLeave * call system('echo ' . shellescape(getreg('+')) . 
   \ ' | xclip -selection clipboard')
