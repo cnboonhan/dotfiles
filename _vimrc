@@ -26,4 +26,4 @@ nnoremap <leader>l :set relativenumber! nu! nonu<CR>
 nmap <leader><leader> :noh<CR>
 nmap <leader>r :so $HOME/.vimrc<CR> 
 
-# source $HOME/.vimrc.plugins
+" source $HOME/.vimrc.plugins

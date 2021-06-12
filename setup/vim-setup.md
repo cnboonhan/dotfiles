@@ -3,7 +3,7 @@ Setup Vim with minimal configurations and plugins.
 
 ## Install vim
 ```
-sudo pacman -S gvim ctags fzf ripgrep
+pacman -S gvim ctags fzf ripgrep
 ```
 ## Optionally, install plugins
 ```
