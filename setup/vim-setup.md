@@ -12,7 +12,6 @@ nvm install --lts
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim        # vim-plug
 pacman -S flake8 autopep8 rustfmt shfmt clang
-
 ```
 
 ## Follow up

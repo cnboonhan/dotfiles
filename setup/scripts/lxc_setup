@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -a
 
 lxc_create_storage_pool() {
   lxc storage create default dir &> /dev/null || true
@@ -24,6 +24,38 @@ locations:
 - none
 EOF
 }
+
+lxc_create_profile_hostbridge() {
+  lxc profile create hostbridge &> /dev/null || true
+  cat << \EOF | lxc profile edit hostbridge
+config: {}
+description: Use the host network via bridge br0
+devices:
+  eth0:
+    name: eth0
+    nictype: bridged
+    parent: br0
+    type: nic
+name: hostbridge
+used_by: []
+EOF
+}
+
+lxc_create_profile_nat() {
+  lxc profile create nat &> /dev/null || true
+  cat << \EOF | lxc profile edit nat 
+config: {}
+description: Use the lxdbr0 network
+devices:
+  eth0:
+    name: eth0
+    network: lxdbr0 
+    type: nic
+name: nat 
+used_by: []
+EOF
+}
+
 
 lxc_create_profile_display() {
   lxc profile create display &> /dev/null || true
@@ -71,10 +103,6 @@ cat << \EOF | lxc profile edit default
 config: {}
 description: Default LXD profile
 devices:
-  eth0:
-    name: eth0
-    network: lxdbr0
-    type: nic
   root:
     path: /
     pool: default
@@ -106,6 +134,6 @@ lxc_setup_all() {
   lxc_create_profile_minikube  || echo "Minikube profile was not created."
   lxc_create_profile_default  || echo "default profile was not created."
   lxc_create_profile_mounthome  || echo "mounthome profile was not created."
+  lxc_create_profile_hostbridge  || echo "hostbridge profile was not created."
+  lxc_create_profile_nat  || echo "nat profile was not created."
 }
-
-lxc_setup_all

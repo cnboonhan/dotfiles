@@ -1,18 +1,18 @@
 # Setup Notes for a new Arch Linux Install
 
-## Prepare USB
+#### Prepare USB
 ```
 # Download Arch Linux .iso
 # Figure out which device is the USB: lsblk
 cp archlinux.iso  /dev/sda
 ```
 
-## Boot USB
+#### Boot USB
 ```
 # You might need to change the boot order in BIOS
 ```
 
-## Arch Linux Boostrap
+#### Arch Linux Boostrap
 ```
 # Clear Partitions
 fdisk -l
@@ -61,7 +61,7 @@ passwd arch
 
 # Restart and remove USB
 ```
-## Network Setup
+#### Network Setup
 ```
 # Set up network as root
 wpa_passphrase [ssid] [psk] > /etc/wpa_supplicant/wpa_supplicant-[iface].conf
@@ -88,7 +88,7 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 ```
-## GUI Setup
+#### GUI Setup
 ```
 pacman -S xorg xorg-xinit
 cd /usr/src
@@ -110,11 +110,11 @@ echo "exec dwm" >> ~/.xinitrc
 startx
 ```
 
-## Add Bash Completion
+#### Add Bash Completion
 sudo pacman -S bash-completion
 echo "source /usr/share/bash-completion/bash_completion" >> ~/.bashrc
 
-## Setup up SSH keys and networking
+#### Setup up SSH keys and networking
 ```
 pacman -S openssh avahi nss-mdns
 systemctl start avahi-daemon.service
@@ -122,7 +122,7 @@ systemctl start/enable sshd.service
 ssh-keygen -b 4096
 ```
 
-## Set Monitor
+#### Set Monitor
 ```
 xrandr # See what are the displays you have
 xrandr --output [display-name] --auto     # Activate display
@@ -131,7 +131,7 @@ xrandr --output [display-name] --left-of/right-of [other-display      # Relative
 xrandr -s [resolution]                  # change monitor resolution
 ```
 
-## Add sound
+#### Add sound
 ```
 pacman -S alsa-utils pulseaudio pavucontrol 
 pulseaudio --check
@@ -140,13 +140,19 @@ pulseaudio -D
 # M to mute/unmute
 ```
 
-## Add misc
+#### Add misc
 ```
 pacman -S scrot     # Screenshots with scrot, scrot -u
 ```
 
-## Recording Video
+#### Recording Video
 ```
 pacman -S vlc ffmpeg
 ffmpeg -framerate 25 -video_size 1920x1080 -f x11grab -i :0.0+0,0 output.mp4      # Records from :0 a 1920x1080 video at offsets 0,0
+```
+
+#### Set up dotfiles
+```
+cp _.* ~
+for file in _*; do mv $file ${file//_/.}; done
 ```

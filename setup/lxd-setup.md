@@ -6,41 +6,47 @@ lxd init
 usermod -aG lxd arch
 ```
 
-# Change occurances of 1000 to 100000 for unprivileged containers
-# Add the following to /etc/pam.d/system.login
+#### Change occurances of 1000 to 100000 for unprivileged containers
+#### Add the following to /etc/pam.d/system.login
 ```
 session    optional   pam_cgfs.so -c freezer,memory,name=systemd,unified
 ```
 
-# Add the following to /etc/lxc/default.tconf
+#### Add the following to /etc/lxc/default.tconf
 ```     
 lxc.idmap = u 0 1000 65536
 lxc.idmap = g 0 1000 65536
 ```
 
-# Add the following to /etc/subuid and /etc/subgid
+#### Add the following to /etc/subuid and /etc/subgid
 root:1000:65536
 
-# Modify GRUB_CMDLINE_LINUX_DEFAULT as following
+#### Modify GRUB_CMDLINE_LINUX_DEFAULT as following
 ```
 GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet systemd.unified_cgroup_hierarchy=0"
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-# Set default DNS for lxdbr0 network
-lxc network set lxdbr0 raw.dnsmasq dhcp-option=6,8.8.8.8,8.8.4.4
-
-# Add the following to /etc/systemd/network/lxdbr0.network to enable mDNS
+#### Use the setup script functions to set up LXC profiles, network, storage, etc
 ```
-[Match]
-Name=lxdbr0
-
-[Network]
-MulticastDNS=yes
+source scripts/lxc_setup
+lxc_setup_all
 ```
-# Setup SSH keys
+
+#### Setup SSH keys
 ```
 ssh-keygen -f $HOME/.ssh/id_rsa_lxd
 lxc exec [container-name] -- su --login ubuntu bash -c "echo $(cat $HOME/.ssh/id_rsa_lxd.pub) >> /home/ubuntu/.ssh/authorized_keys" 
 ```
 
+#### Create container and add profiles
+```
+lxc launch ubuntu:20.04 container-name
+lxc profile assign default,hostbridge,display
+```
+
+#### Copy profiles to scale up
+```
+lxc copy container container-alt
+lxc start container-alt
+```
