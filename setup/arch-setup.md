@@ -156,3 +156,10 @@ ffmpeg -framerate 25 -video_size 1920x1080 -f x11grab -i :0.0+0,0 output.mp4    
 cp _* ~
 cd $HOME; for file in _*; do mv $file ${file//_/.}; done
 ```
+
+#### Reset Touchpad if not working
+```
+# Check SYNA7DB5:01 06CB:CD41 Touchpad in xinput
+rmmod i2c_hid
+modprobe i2c_hid
+```

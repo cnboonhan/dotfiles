@@ -50,3 +50,7 @@ lxc profile assign default,hostbridge,display
 lxc copy container container-alt
 lxc start container-alt
 ```
+#### Expose / Forward Ports from container to host
+```
+lxc config device add keycloak keycloak8080 proxy listen=tcp:0.0.0.0:8080 connect=tcp:127.0.0.1:8080
+```
