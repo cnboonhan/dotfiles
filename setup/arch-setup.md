@@ -124,11 +124,13 @@ ssh-keygen -b 4096
 
 #### Set Monitor
 ```
+pacman -S autorandr
 xrandr # See what are the displays you have
 xrandr --output [display-name] --auto     # Activate display
 xrandr --output [display-name] --off     # De-activate display
 xrandr --output [display-name] --left-of/right-of [other-display      # Relative positioning
 xrandr -s [resolution]                  # change monitor resolution
+autorandr --save [name]                 # save configuration
 ```
 
 #### Add sound
@@ -160,6 +162,6 @@ cd $HOME; for file in _*; do mv $file ${file//_/.}; done
 #### Reset Touchpad if not working
 ```
 # Check SYNA7DB5:01 06CB:CD41 Touchpad in xinput
-rmmod i2c_hid
-modprobe i2c_hid
+rmmod i2c_hid_acpi; rmmod i2c_hid
+modprobe i2c_hid_acpi; modprobe i2c_hid_hid
 ```
