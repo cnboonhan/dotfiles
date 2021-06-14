@@ -124,11 +124,13 @@ ssh-keygen -b 4096
 
 #### Set Monitor
 ```
+pacman -S autorandr
 xrandr # See what are the displays you have
 xrandr --output [display-name] --auto     # Activate display
 xrandr --output [display-name] --off     # De-activate display
 xrandr --output [display-name] --left-of/right-of [other-display      # Relative positioning
 xrandr -s [resolution]                  # change monitor resolution
+autorandr --save [name]                 # save configuration
 ```
 
 #### Add sound
