@@ -1,0 +1,20 @@
+#!/bin/bash
+
+cd `git rev-parse --show-toplevel`
+
+cp _* $HOME
+for file in _*; do mv file ${file//_/.}; done
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash                 # For plugins with node dependencies
+export nvm_dir="$([ -z "${xdg_config_home-}" ] && printf %s "${home}/.nvm" || printf %s "${xdg_config_home}/nvm")"
+[ -s "$nvm_dir/nvm.sh" ] && \. "$nvm_dir/nvm.sh" # this loads nvm
+
+nvm install --lts
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim        # vim-plug
+
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm 
+curl https://raw.githubusercontent.com/imomaliev/tmux-bash-completion/master/completions/tmux | sudo tee -a /usr/share/bash-completion/completions/tmux
+
+which apt && sudo apt install fzf ripgrep vim
+which pacman && sudo pacman -S fzf ripgrep vim
+
