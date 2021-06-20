@@ -26,4 +26,16 @@ nnoremap <leader>l :set relativenumber! nu! nonu<CR>
 nmap <leader><leader> :noh<CR>
 nmap <leader>r :so $HOME/.vimrc<CR> 
 
+" Paste without setting paste/nopaste
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
 " source $HOME/.vimrc.plugins
