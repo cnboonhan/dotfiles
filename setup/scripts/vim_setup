@@ -16,6 +16,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm 
 curl https://raw.githubusercontent.com/imomaliev/tmux-bash-completion/master/completions/tmux | sudo tee -a /usr/share/bash-completion/completions/tmux
 
-which apt && sudo apt update && sudo apt install fzf ripgrep vim
-which pacman && sudo pacman -Syu && sudo pacman -S fzf ripgrep vim
+which apt && sudo apt update && sudo apt install fzf ripgrep 
+which pacman && sudo pacman -Syu && sudo pacman -S fzf ripgrep 
 
