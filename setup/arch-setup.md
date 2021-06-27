@@ -145,6 +145,7 @@ pulseaudio -D
 #### Add misc
 ```
 pacman -S scrot     # Screenshots with scrot, scrot -u
+pacman -S mc        # TUI file manager
 ```
 
 #### Recording Video
