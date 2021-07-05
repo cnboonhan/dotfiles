@@ -20,6 +20,7 @@ get_battery() {
 cat /sys/class/power_supply/$(ls /sys/class/power_supply/ | grep BAT | head -1)/capacity 2> /dev/null || echo 100
 }
 
+export GPG_TTY=$(tty)
 export PS1='\[\e[1m\e[34m\]\u@\h\[ [$(get_battery)]\e[0m\]:\[\e[1m\e[32m\]\w \[\e[91m\]$(parse-git-branch)\[\e[0m\]$ '
 
 #export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
