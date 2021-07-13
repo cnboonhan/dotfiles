@@ -84,7 +84,9 @@ systemctl start systemd-resolved
 #### AUR Setup
 ```
 pacman -S git base-devel
+cd /opt
 git clone https://aur.archlinux.org/yay.git
+sudo chown -R arch:arch ./yay
 cd yay
 makepkg -si
 ```
