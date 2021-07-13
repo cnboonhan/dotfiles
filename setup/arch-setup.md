@@ -89,6 +89,8 @@ git clone https://aur.archlinux.org/yay.git
 sudo chown -R arch:arch ./yay
 cd yay
 makepkg -si
+yay -Syu
+yay -S wpa_supplicant_gui slack-desktop st
 ```
 #### GUI Setup
 ```
