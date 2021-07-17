@@ -19,7 +19,7 @@ lxc.idmap = g 0 1000 65536
 ```
 
 #### Add the following to /etc/subuid and /etc/subgid
-````
+```
 root:1000:65536
 ```
 
