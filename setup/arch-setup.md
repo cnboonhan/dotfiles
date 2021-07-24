@@ -5,6 +5,7 @@
 # Download Arch Linux .iso
 # Figure out which device is the USB: lsblk
 cp archlinux.iso  /dev/sda
+sudo dd bs=4M if=path/to/input.iso of=/dev/sd<?> conv=fdatasync  status=progress
 ```
 
 #### Boot USB
@@ -12,7 +13,7 @@ cp archlinux.iso  /dev/sda
 # You might need to change the boot order in BIOS
 ```
 
-#### Arch Linux Boostrap
+#### Arch Linux Bootstrap
 ```
 # Clear Partitions
 fdisk -l
@@ -81,6 +82,7 @@ systemctl start systemd-resolved
 # ping check
 # Run enable on all systemctl if successful
 ```
+
 #### AUR Setup
 ```
 pacman -S git base-devel
@@ -90,7 +92,7 @@ sudo chown -R arch:arch ./yay
 cd yay
 makepkg -si
 yay -Syu
-yay -S wpa_supplicant_gui slack-desktop st
+yay -S wpa_supplicant_gui slack-desktop st 
 ```
 #### GUI Setup
 ```
@@ -169,4 +171,11 @@ cd $HOME; for file in _*; do mv $file ${file//_/.}; done
 # Check SYNA7DB5:01 06CB:CD41 Touchpad in xinput
 rmmod i2c_hid_acpi; rmmod i2c_hid
 modprobe i2c_hid_acpi; modprobe i2c_hid_hid
+```
+
+#### Nvidia Screen Tearing
+```
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+exec [your-window-manager]
 ```
