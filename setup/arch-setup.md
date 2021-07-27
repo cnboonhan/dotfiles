@@ -178,4 +178,6 @@ modprobe i2c_hid_acpi; modprobe i2c_hid_hid
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 exec [your-window-manager]
+# Alternatively, use lightDM which helps with DWM 
+sudo apt install lightdm
 ```
