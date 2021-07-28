@@ -16,6 +16,7 @@ pacman -S flake8 autopep8 rustfmt shfmt clang prettier
 
 ## Follow up
 ```
+pacman -S clang bear             # C++ autocompletion tools
 # coc-nvim: https://github.com/neoclide/coc.nvim/wiki/Language-servers
 :CocInstall coc-json coc-tsserver coc-pyright coc-clangd
 ```
