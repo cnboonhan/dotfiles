@@ -114,6 +114,9 @@ cd st && make clean install
 cd dmenu && make clean install
 echo "exec dwm" >> ~/.xinitrc
 startx
+
+# temp fix if st crashes on emojis
+apt install fonts-symbola || yay -S ttf-symbola
 ```
 
 #### Add Bash Completion
@@ -181,3 +184,4 @@ exec [your-window-manager]
 # Alternatively, use lightDM which helps with DWM 
 sudo apt install lightdm
 ```
+
