@@ -1,13 +1,14 @@
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
 Plug 'tomasr/molokai'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
-"Plug 'leafgarland/typescript-vim'
-"Plug 'peitalin/vim-jsx-typescript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 call plug#end()
 
 let g:molokai_original = 1
@@ -26,6 +27,16 @@ let g:ale_python_flake8_options = '--ignore=A003,D400,D205,D107,D102,E111,E114,E
 
 nmap <leader>z :ALEToggle<CR>
 nmap <leader>Z :ALEFix<CR>
+
+" NERDTREE / TAGBAR 
+let NERDTreeShowHidden=1
+let g:NERDTreeDirArrowExpandable = '↠'
+let g:NERDTreeDirArrowCollapsible = '↡'
+nmap <leader>q :NERDTreeToggle<CR>
+nmap <leader>Q :TagbarToggle<CR>
+nmap <leader>a :A<CR>
+
+" coc-nvim
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
