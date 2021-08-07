@@ -39,4 +39,4 @@ function! XTermPasteBegin()
   return ""
 endfunction
 
-source $HOME/.vimrc.plugins
+source $HOME/.vimrc_plugins

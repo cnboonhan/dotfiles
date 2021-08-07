@@ -44,3 +44,9 @@ __msg_info "Install Tmux package manager"
     { git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm" && \
     curl https://raw.githubusercontent.com/imomaliev/tmux-bash-completion/master/completions/tmux > /usr/share/bash-completion/completions/tmux; } || \
     __error_exit $LINENO "Unable to install Tmux package manager"
+
+__msg_info "Copying vim config files and installing"
+{ cp ../_vimrc "$HOME/.vimrc" && cp ../_vimrc.plugins "$HOME/.vimrc_plugins"; } || \
+    __error_exit $LINENO "Error copying config files"
+
+vim -c PlugInstall -c CocInstall coc-json coc-tsserver coc-pyright coc-clangd -c qall!
