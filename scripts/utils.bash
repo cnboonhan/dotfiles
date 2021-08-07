@@ -1,20 +1,30 @@
 #!/usr/bin/env bash
 
+# exit codes: 
+#   0: success
+#   1: general error exit
+#   2: lockfile present
+
 set -o errexit
 set -o nounset
 set -o pipefail
+trap 'catch $? $LINENO' EXIT
+
+catch() {
+  __cleanup
+  if [ "$1" != "2" ]; then
+      __unlock
+  fi
+}
 
 : "${LOG_ERROR:=1}"
 : "${LOG_DEBUG:=1}"
 : "${LOG_INFO:=1}"
 : "${PROJECT:=project}"
-
 PROJECT_TMP=/tmp/$PROJECT
-trap __cleanup EXIT
 
 function __cleanup() {
     __msg_debug "Cleaning up"
-    __unlock
 }
 
 __error_exit() {
@@ -41,21 +51,15 @@ __random_string() {
 }
 
 __lock() {
-    [ ! -f $PROJECT_TMP/.$PROJECT.lock ] || __error_exit "$LINENO" "Lockfile present at $PROJECT_TMP"
-    __msg_info "Generating Lockfile"
-    mkdir -p $PROJECT_TMP
-    touch $PROJECT_TMP/.$PROJECT.lock
+    [ ! -f "$PROJECT_TMP/.$PROJECT.lock" ] || { __msg_error "Lockfile present at $PROJECT_TMP" && exit 2; }
+    __msg_info "Generating Lockfile at $PROJECT_TMP/.$PROJECT.lock"
+    mkdir -p "$PROJECT_TMP"
+    touch "$PROJECT_TMP/.$PROJECT.lock"
 }
 
 __unlock() {
     __msg_info "Removing Lockfile"
-    rm $PROJECT_TMP/.$PROJECT.lock
+    rm "$PROJECT_TMP/.$PROJECT.lock" 2> /dev/null
 }
 
 __lock
-
-__msg_info "This is an info message"
-__msg_debug "This is a debug message"
-__msg_error "This is an error message"
-
-{ a=0; (( a++ )); } || __error_exit "$LINENO" "let operation returned $?"
