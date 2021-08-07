@@ -41,8 +41,7 @@ __msg_info "Installing vim-plug"
 
 __msg_info "Install Tmux package manager"
 [ -d "$HOME/.tmux/plugins/tpm" ] || \
-    { git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm" && \
-    curl https://raw.githubusercontent.com/imomaliev/tmux-bash-completion/master/completions/tmux > /usr/share/bash-completion/completions/tmux; } || \
+    git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm" || \
     __error_exit $LINENO "Unable to install Tmux package manager"
 
 __msg_info "Copying vim config files and installing"
