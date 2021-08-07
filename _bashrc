@@ -1,0 +1,30 @@
+#
+# ~/.bashrc
+#
+# shellcheck disable=SC2155
+
+export EDITOR=vim
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+
+{ [ -f /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion; } ||
+    echo "No bash completion available"
+
+## Helper function for PS1 modification to see git branch in terminal prompt
+parse-git-branch() {
+    git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+get_battery() {
+    cat /sys/class/power_supply/"$(find /sys/class/power_supply/ | grep BAT | head -1)"/capacity 2>/dev/null || echo 100
+}
+
+git-pull-all() {
+    find . -type d -name .git -exec sh -c 'i="$1"; cd $i/../ && pwd && git stash > /dev/null && git pull' _ {} \;
+}
+
+export GPG_TTY=$(tty)
+export PS1='\[\e[1m\]\[\e[34m\]\u@\h [$(get_battery)]:\w \[\e[91m\]$(parse-git-branch) \[\e[0m\]$ '

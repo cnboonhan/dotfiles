@@ -1,0 +1,43 @@
+#!/bin/bash
+set -e
+
+# Create first session with meaningful name
+session=template
+tmux new-session -d -x "$(tput cols)" -y "$(tput lines)" -s $session || exit # Stop if duplicate sessions exist to be safe
+
+# Configuring panes to use the current terminals resolution
+WW=$(tmux display -p '#{window_width}')
+WH=$(tmux display -p '#{window_height}')
+
+WL=$(expr $WW \* 8 / 10)  # Amount to resize to the left
+WR=$(expr $WW \* 2 / 10)  # Amount to resize to the right
+WU=$(expr $WH \* 8 / 10)  # Amount to resize to the top
+WD=$(expr $WH \* 2 / 10)  # Amount to resize to the bottom
+
+# Rename first window to a standard name for consistency
+tmux rename-window -t $session:0 main
+tmux select-pane -t $session:main.0
+
+## Add window
+tmux new-window -t $session:1 -n "one" 
+tmux send -t $session:one.0 "echo 'this is window one'" ENTER
+
+# Add window, split pane in this window
+tmux new-window -t $session:2 -n "two" 
+tmux split-pane -t $session:two.0 -h  # Split horizontally from pane 0 of window two
+tmux split-pane -t $session:two.1 -v  # Split vertically from pane 1 of window two
+tmux send -t $session:two.0 "echo 'this is window two, pane 0'" ENTER
+tmux send -t $session:two.1 "echo 'this is window two, pane 1'" ENTER
+tmux send -t $session:two.2 "echo 'this is window two, pane 2'" ENTER
+
+# Resize panes according to actual window sizes
+tmux resize-pane -t $session:two.1 -x $WR
+tmux resize-pane -t $session:two.2 -y $WD
+
+# Handle both cases when tmux is already launched, or not
+if [[ ! "$TMUX" ]]; then
+  tmux attach-session -t $session:main.0
+else
+  tmux switch -t $session:main.0
+fi
+
