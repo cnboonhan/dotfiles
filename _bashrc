@@ -19,7 +19,7 @@ parse-git-branch() {
 }
 
 get_battery() {
-    cat /sys/class/power_supply/"$(find /sys/class/power_supply/ | grep BAT | head -1)"/capacity 2>/dev/null || echo 100
+    cat "$(find /sys/class/power_supply/ | grep BAT | head -1)/capacity" 2> /dev/null || echo 100
 }
 
 git-pull-all() {
@@ -28,3 +28,5 @@ git-pull-all() {
 
 export GPG_TTY=$(tty)
 export PS1='\[\e[1m\]\[\e[34m\]\u@\h [$(get_battery)]:\w \[\e[91m\]$(parse-git-branch) \[\e[0m\]$ '
+
+#source $HOME/.bashrc.fzf

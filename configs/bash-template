@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+: "${LOG_ERROR:=1}"
+: "${LOG_DEBUG:=1}"
+: "${LOG_INFO:=1}"
+: "${PROJECT:=project}"
+
+PROJECT_TMP=/tmp/$PROJECT
+trap __cleanup EXIT
+
+function __cleanup() {
+    __msg_debug "Cleaning up"
+    __unlock
+}
+
+__error_exit() {
+    line=$1
+    shift 1
+    __msg_error "non zero return code from line: $line — $*"
+    exit 1
+}
+
+__msg_error() {
+    { [[ "${LOG_ERROR}" == "1" ]] && echo -e "[ERROR]: $*"; } || true
+}
+
+__msg_debug() {
+    { [[ "${LOG_DEBUG}" == "1" ]] && echo -e "[DEBUG]: $*";} || true
+}
+
+__msg_info() {
+    { [[ "${LOG_INFO}" == "1" ]] && echo -e "[INFO]: $*"; } || true
+}
+
+__random_string() {
+    tr -dc A-Za-z0-9 </dev/urandom | head -c 13 ; echo ''
+}
+
+__lock() {
+    [ ! -f $PROJECT_TMP/.$PROJECT.lock ] || __error_exit "$LINENO" "Lockfile present at $PROJECT_TMP"
+    __msg_info "Generating Lockfile"
+    mkdir -p $PROJECT_TMP
+    touch $PROJECT_TMP/.$PROJECT.lock
+}
+
+__unlock() {
+    __msg_info "Removing Lockfile"
+    rm $PROJECT_TMP/.$PROJECT.lock
+}
+
+__lock
+
+__msg_info "This is an info message"
+__msg_debug "This is a debug message"
+__msg_error "This is an error message"
+
+{ a=0; (( a++ )); } || __error_exit "$LINENO" "let operation returned $?"
