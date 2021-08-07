@@ -1,0 +1,11 @@
+Unit]
+Description=Template Systemd Service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/echo "Hello"
+Restart=always
+RestartSec=15
+
+[Install]
+WantedBy=multi-user.target

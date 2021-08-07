@@ -1,0 +1,6 @@
+#xsetroot -solid grey
+#xterm -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
+#twm &
+
+#gnome-session &
+/usr/bin/xfce4-session &
