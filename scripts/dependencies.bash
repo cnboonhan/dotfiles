@@ -32,11 +32,6 @@ DEBIAN_FRONTEND=noninteractive apt install \
     ubuntu-desktop gnome-panel gnome-settings-daemon xfce4 nautilus gnome-terminal || __error_exit $LINENO "Something happened with installing apt dependencies for GUI"
 
 
-__msg_info "Updating Ubuntu alternatives."
-update-alternatives --set x-window-manager /usr/bin/dwm
-update-alternatives --set x-session-manager /usr/bin/xfce4-session
-update-alternatives --set x-terminal-emulator /usr/bin/st
-
 __msg_info "Installing snaps"
 command -v || { echo -e "No snap installs available" && exit 1; }
 snap install lxd
