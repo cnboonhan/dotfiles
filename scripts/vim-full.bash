@@ -49,7 +49,7 @@ __msg_info "Install Tmux package manager"
     __error_exit $LINENO "Unable to install Tmux package manager"
 
 __msg_info "Copying vim config files and installing"
-{ cp ../_vimrc "$HOME/.vimrc" && cp ../_vimrc.plugins "$HOME/.vimrc_plugins"; } || \
+{ cp $SCRIPTPATH/../_vimrc "$HOME/.vimrc" && cp $SCRIPTPATH/../_vimrc.plugins "$HOME/.vimrc_plugins"; } || \
     __error_exit $LINENO "Error copying config files"
 
 vim -c PlugInstall -c CocInstall coc-json coc-tsserver coc-pyright coc-clangd -c qall! > /dev/null 2>&1
