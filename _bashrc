@@ -2,6 +2,7 @@
 # ~/.bashrc
 #
 # shellcheck disable=SC2155
+# shellcheck source=/home/ubuntu/.bashrc
 
 export EDITOR=vim
 set -o vi
@@ -20,7 +21,7 @@ parse-git-branch() {
 }
 
 get_battery() {
-    cat "$(find /sys/class/power_supply/ | grep BAT | head -1)/capacity" 2> /dev/null || echo 100
+    /usr/bin/cat "$(find /sys/class/power_supply/ | grep BAT | head -1)/capacity" 2> /dev/null || echo 100
 }
 
 git-pull-all() {
@@ -29,3 +30,6 @@ git-pull-all() {
 
 export GPG_TTY=$(tty)
 export PS1='\[\e[1m\]\[\e[34m\]\u@\h [$(get_battery)]:\w \[\e[91m\]$(parse-git-branch) \[\e[0m\]$ '
+
+( command -v bat > /dev/null ) && alias cat='bat --color=always --style=numbers'
+[ -f "$HOME/.bashrc.fzf" ] && source "$HOME/.bashrc.fzf"
