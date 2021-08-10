@@ -11,7 +11,11 @@ set -o nounset
 set -o pipefail
 
 export PROJECT=vim-full-setup
-. ./utils.bash
+SCRIPTPATH="$(
+    cd -- "$(dirname "$0")" >/dev/null 2>&1
+    pwd -P
+)"
+. $SCRIPTPATH/utils.bash
 
 declare -a DEPENDS=(
     "curl" "wget"
