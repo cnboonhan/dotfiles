@@ -18,11 +18,11 @@ SCRIPTPATH="$(
 . "$SCRIPTPATH/utils.bash"
 
 declare -a DEPENDS=(
-    "curl" "wget" "git" "tmux" "vim"
+    "curl" "wget" "git" "tmux" "vim" "clangd"
 )
 
 for depend in "${DEPENDS[@]}"; do
-    command -v "$depend" >/dev/null 2>&1 || __error_exit $LINENO "$depend is required."
+    dpkg -s "$depend" >/dev/null 2>&1 || __error_exit $LINENO "$depend is required."
 done
 __msg_info "All apt dependencies found."
 
@@ -50,4 +50,4 @@ __msg_info "Copying vim config files and installing, might take a while."
 { cp "$SCRIPTPATH/../_vimrc" "$HOME/.vimrc" && cp "$SCRIPTPATH/../_vimrc.plugins" "$HOME/.vimrc_plugins"; } ||
     __error_exit $LINENO "Error copying config files"
 
-vim -c PlugInstall -c CocInstall coc-json coc-tsserver coc-pyright coc-clangd -c qall! >/dev/null 2>&1
+vim -c PlugInstall -c CocInstall coc-json coc-tsserver coc-pyright coc-clangd -c qall! 

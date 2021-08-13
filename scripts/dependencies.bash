@@ -30,7 +30,7 @@ DEBIAN_FRONTEND=noninteractive apt install \
     tmux vim ripgrep fzf \
     python3 python3-pip \
     flake8 yamllint jq python3-autopep8 clang-format \
-    build-essential clang bear gdb cmake exuberant-ctags \
+    build-essential clang clangd bear gdb cmake exuberant-ctags \
     lightdm dwm stterm fonts-symbola \
     shellcheck \
     xclip \
