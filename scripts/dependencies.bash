@@ -29,7 +29,7 @@ DEBIAN_FRONTEND=noninteractive apt install \
     git curl wget openssh-server \
     tmux vim ripgrep fzf \
     python3 python3-pip \
-    flake8 yamllint jq python3-autopep8 clang-format \
+    flake8 yamllint jq yq python3-autopep8 clang-format \
     build-essential clang bear gdb cmake exuberant-ctags \
     lightdm dwm stterm fonts-symbola \
     shellcheck \
@@ -38,7 +38,7 @@ DEBIAN_FRONTEND=noninteractive apt install \
     -y || __error_exit $LINENO "Something wrong happened with installing apt dependencies."
 
 __msg_info "Installing GUI related apts"
-([ "$GUI" == "1" ] && DEBIAN_FRONTEND=noninteractive apt install -y ubuntu-desktop gnome-panel gnome-settings-daemon xfce4 nautilus gnome-terminal xfce4-screenshooter) ||
+([ "$GUI" == "1" ] && DEBIAN_FRONTEND=noninteractive apt install -y ubuntu-desktop gnome-terminal) ||
     __msg_info "Did not install GUI related dependencies. set GUI=1 to install GUI dependencies."
 
 __msg_info "Installing snaps"
