@@ -17,12 +17,14 @@ set clipboard=unnamedplus
 autocmd VimLeave * call system('echo ' . shellescape(getreg('+')) . 
   \ ' | xclip -selection clipboard')
 
+" Allow undo persistence across vim instances
 if !isdirectory("/tmp/.vim-undo-dir")
   call mkdir("/tmp/.vim-undo-dir", "", 0700)
 endif
 set undodir=/tmp/.vim-undo-dir
 set undofile
 
+" Basic shortcuts
 nnoremap <leader>l :set relativenumber! nu! nonu<CR>
 nmap <leader><leader> :noh<CR>
 nmap <leader>r :so $HOME/.vimrc<CR> 

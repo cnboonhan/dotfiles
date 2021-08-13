@@ -32,7 +32,6 @@ export GPG_TTY=$(tty)
 export PS1='\[\e[1m\]\[\e[34m\]\u@\h [$(get_battery)]:\w \[\e[91m\]$(parse-git-branch) \[\e[0m\]$ '
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 
-(command -v bat >/dev/null) && alias cat='bat --color=always --style=numbers'
 [ -f "$HOME/.bashrc.fzf" ] && source "$HOME/.bashrc.fzf"
 [ -d "$HOME/.nvm" ] && 
     export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" &&
