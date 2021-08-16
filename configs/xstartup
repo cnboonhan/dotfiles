@@ -4,3 +4,12 @@
 
 #gnome-session &
 /usr/bin/xfce4-session &
+
+# For when there is already a GUI
+#!/bin/sh
+#PATH=/usr/bin:/usr/sbin
+#unset SESSION_MANAGER
+#unset DBUS_SESSION_BUS_ADDRESS
+#/usr/bin/gnome-session &
+
+
