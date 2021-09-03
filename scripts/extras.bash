@@ -28,7 +28,7 @@ curl -sS https://webinstall.dev/zoxide | bash || __error_exit $LINENO "Failed to
 VERSION=0.11.9; ( wget "https://github.com/dalance/procs/releases/download/v$VERSION/procs-v$VERSION-x86_64-lnx.zip" -O /tmp/procs.zip && \
     unzip /tmp/procs.zip -d /usr/local/bin ) || __error_exit $LINENO "Failed to install procs"
 VERSION=0.6.2; ( wget "https://github.com/bootandy/dust/releases/download/v$VERSION/dust-v$VERSION-x86_64-unknown-linux-gnu.tar.gz" -O /tmp/dust.tar.gz && \
-    mkdir -p /tmp/dust && tar -xzvf /tmp/dust.tar.gz -C /tmp/dust  --strip-components 1 && mv /tmp/dust/dust /usr/local/bin ) || __error_exit $LINENO "Failed to install dust":w
+    mkdir -p /tmp/dust && tar -xzvf /tmp/dust.tar.gz -C /tmp/dust  --strip-components 1 && mv /tmp/dust/dust /usr/local/bin ) || __error_exit $LINENO "Failed to install dust"
 VERSION=0.6.3; ( curl -LO "https://github.com/ClementTsang/bottom/releases/download/$VERSION/bottom_${VERSION}_amd64.deb" && \
     dpkg -i "bottom_${VERSION}_amd64.deb" && \
     rm "bottom_${VERSION}_amd64.deb" ) || __error_exit $LINENO "bottom failed to install"
