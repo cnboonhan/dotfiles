@@ -50,4 +50,5 @@ __msg_info "Copying vim config files and installing, might take a while."
 { cp "$SCRIPTPATH/../_vimrc" "$HOME/.vimrc" && cp "$SCRIPTPATH/../_vimrc.plugins" "$HOME/.vimrc_plugins"; } ||
     __error_exit $LINENO "Error copying config files"
 
-vim -c PlugInstall -c "CocInstall coc-json coc-tsserver coc-pyright coc-clangd"
+vim -c PlugInstall 
+vim -c "CocInstall coc-json coc-tsserver coc-pyright coc-clangd"

@@ -24,7 +24,7 @@ apt update
 __msg_info "Installing.."
 
 apt install screenkey -y
-curl -sS https://webinstall.dev/zoxide | bash || __error_exit $LINENO "Failed to install zoxide"
+( curl -sS https://webinstall.dev/zoxide | bash ) || __error_exit $LINENO "Failed to install zoxide"
 VERSION=0.11.9; ( wget "https://github.com/dalance/procs/releases/download/v$VERSION/procs-v$VERSION-x86_64-lnx.zip" -O /tmp/procs.zip && \
     unzip /tmp/procs.zip -d /usr/local/bin ) || __error_exit $LINENO "Failed to install procs"
 VERSION=0.6.2; ( wget "https://github.com/bootandy/dust/releases/download/v$VERSION/dust-v$VERSION-x86_64-unknown-linux-gnu.tar.gz" -O /tmp/dust.tar.gz && \
