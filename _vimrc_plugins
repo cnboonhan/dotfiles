@@ -21,7 +21,7 @@ nnoremap <leader>b :Buffers<CR>
 
 " ALE
 let g:ale_linters = {'python': ['flake8'], 'c': ['null'], 'cpp': ['null'], 'sh': ['shellcheck'], 'yaml': ['yamllint']}
-let g:ale_fixers = {'javascript': ['prettier'], 'python': ['autopep8'], 'c': ['clang-format'], 'cpp':['clang-format'], 'rust': ['rustfmt'], 'json': ['jq'], 'sh': ['shfmt'], 'yaml': ['prettier']}
+let g:ale_fixers = {'javascript': ['prettier'], 'python': ['autopep8'], 'c': ['clang-format'], 'cpp':['clang-format'], 'rust': ['rustfmt'], 'json': ['jq'], 'sh': ['shfmt'], 'yaml': ['prettier'], 'go': ['gofmt'], 'html': ['prettier']}
 
 
 "let g:ale_fix_on_save = 1
