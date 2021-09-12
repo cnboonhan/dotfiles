@@ -34,6 +34,7 @@ DEBIAN_FRONTEND=noninteractive apt install \
     lightdm dwm stterm fonts-symbola \
     shellcheck \
     xclip \
+    gocryptfs \
     nload tshark termshark nmap \
     -y || __error_exit $LINENO "Something wrong happened with installing apt dependencies."
 
