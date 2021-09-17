@@ -18,8 +18,8 @@ colorscheme molokai
 
 " fzf.vim
 nnoremap <leader>p :Files<CR>
-nnoremap <leader>P :call fzf#vim#files(getcwd(), {'options':'--query=' . expand('%:t:r')})<CR>
 nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>B :call fzf#vim#files(getcwd(), {'options':'--query=' . expand('%:t:r')})<CR>
 
 " ALE
 let g:ale_linters = {'python': ['flake8'], 'c': ['null'], 'cpp': ['null'], 'sh': ['shellcheck'], 'yaml': ['yamllint']}
